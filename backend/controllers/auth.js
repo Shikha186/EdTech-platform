@@ -119,6 +119,7 @@ exports.signUp=async(req,res)=>{
             contactNumber:null,
             address:null,
         });
+        //create user in db, dicebar api is used to create random avatar for user based on their name
         const user=await User.create({
             firstname,
             lastname,
