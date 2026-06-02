@@ -12,6 +12,9 @@ const {resetPasswordToken,resetPassword}= require('../controllers/resetPassword'
 // console.log("signUp:", signUp);
 // console.log("Login:", Login);
 // console.log("changePassword:", changePassword);
+router.get("/hello", (req,res)=>{
+    res.send("Hello User Route");
+});
 //auth routes
 router.post("/sendOTP",sendOTP);
 router.post("/signUp",signUp);

@@ -24,12 +24,12 @@ const UserSchema= new mongoose.Schema({
         trim:true,
         minlength: 6
     },
-    confirmPassword:{
-        type:String,
-        required:true,
-        trim:true,
-        minlength: 6
-    },
+    // confirmPassword:{
+    //     type:String,
+    //     required:true,
+    //     trim:true,
+    //     minlength: 6
+    // },
     accountType:{
         type:String,
         required:true,

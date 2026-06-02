@@ -39,20 +39,19 @@ exports.sendOTP=async(req,res)=>{
                 specialChars:false
             });
             result=await OTP.findOne({otp: otp});
-
-            //create entry in db
-            const otpPayload={email,otp};
-            const otpBody= await OTP.create(otpPayload);
-            console.log(otpBody);
-
-
-            return res.status(200).json({
-                success:true,
-                message:"OTP sent successfully"
-            })
-
-
         }
+
+        //create entry in db
+        const otpPayload={email,otp};
+        const otpBody= await OTP.create(otpPayload);
+        console.log(otpBody);
+        console.log("sendOTP controller hit");
+
+
+        return res.status(200).json({
+            success:true,
+            message:"OTP sent successfully"
+        }); 
 
     }catch(error){
         console.log(error);
@@ -102,7 +101,7 @@ exports.signUp=async(req,res)=>{
                 success:false,
                 message:"OTP not found, please request for a new OTP"
             })
-        }else if(recentOtp!=otp){
+        }else if(recentOtp[0].otp!=otp){
             return res.status(400).json({
                 success:false,
                 message:" Invalid Otp entered"
