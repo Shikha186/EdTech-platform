@@ -11,6 +11,6 @@ const {authenticateUser,isAdmin,isInstructor,isStudent}= require('../middlewares
 // console.log("getAllUserDetails:", getAllUserDetails);
 router.put("/updateProfile",authenticateUser,updateProfile);
 router.delete("/deleteAccount",authenticateUser,deleteAccount);
-router.get("/getAllUserDetails",authenticateUser,isAdmin,getAllUserDetails);
+router.get("/getAllUserDetails",authenticateUser,getAllUserDetails);
 
 module.exports= router;

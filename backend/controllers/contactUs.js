@@ -8,13 +8,14 @@ const {contactUsEmail}=require("../mail/templates/contactUsEmail");
 exports.createQuery=async(req,res)=>{
     try{
         //fetch data from req body
-        const {name,email,message}=req.body;
+        const {name,email,message,contactNumber}=req.body;
 
         //create new contact us entry
         const newContactUs=new ContactUs({
             name,
             email,
-            message
+            message,
+            contactNumber
         });
 
         //save to database
@@ -23,7 +24,7 @@ exports.createQuery=async(req,res)=>{
         await mailSender(
             process.env.ADMIN_EMAIL,
             "New Query Received",
-            contactUsEmail(name, email, message)
+            contactUsEmail(name, email, message, contactNumber)
         );
         //send mail to sender confirming receipt of query
         await mailSender(

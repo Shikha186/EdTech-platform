@@ -44,11 +44,11 @@ const PORT=4000;
 // console.log("profile routes:", profileRoutes);
 // console.log("contact routes:", contactRoutes);
 
-app.use((req,res,next)=>{
-    console.log("METHOD:", req.method);
-    console.log("URL:", JSON.stringify(req.url));
-    next();
-});
+// app.use((req,res,next)=>{
+//     console.log("METHOD:", req.method);
+//     console.log("URL:", JSON.stringify(req.url));
+//     next();
+// });
 //define routes
 app.use('/api/v1/user',userRoutes);
 app.use('/api/v1/profile',profileRoutes);

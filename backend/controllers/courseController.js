@@ -1,7 +1,7 @@
 const Course=require('../models/course');
 const Category=require('../models/category');
 const User=require('../models/user');
-const {UploadImageToCloudinary}=require('../utils/imageUploader');
+const {uploadImageToCloudinary}=require('../utils/imageUploader');
 
 //create course handler
 exports.createCourse=async(req,res)=>{
@@ -39,7 +39,7 @@ exports.createCourse=async(req,res)=>{
             })
         }
         //upload thumbnail to cloudinary
-        const thumbnailImage=await UploadImageToCloudinary(thumbnail,process.env.COURSE_THUMBNAIL_FOLDER);
+        const thumbnailImage=await uploadImageToCloudinary(thumbnail,process.env.COURSE_THUMBNAIL_FOLDER);
 
         //create course entry in db
         const courseDetails=await Course.create({
@@ -120,7 +120,7 @@ exports.getCourseDetails=async(req,res)=>{
             }
         })
         .populate("category")
-        .populate("ratingAndReviews")
+        //.populate("ratingAndReviews")
         .populate({
             path: "courseContent",
             populate: {

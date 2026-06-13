@@ -91,12 +91,14 @@ exports.getAllUserDetails=async (req,res)=>{
     try{
         //get id
         const userId=req.user.id;
+        console.log("userId in getAllUserDetails",userId);
         //get data
         const userDetails= await User.findById(userId).populate("additionalDetails").exec();
         //return response
         return res.status(200).json({
             success:true,
-            message:"got all user Details"
+            message:"got all user Details",
+            userDetails
         })
     }catch(error){
         return req.status(401).json({
@@ -108,3 +110,5 @@ exports.getAllUserDetails=async (req,res)=>{
     }
 
 }
+
+

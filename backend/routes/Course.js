@@ -21,7 +21,7 @@ const{createSubSection,updateSubSection,deleteSubSection}=require('../controller
 
 router.post("/createCourse",authenticateUser,isInstructor,createCourse);
 router.get("/showAllCourses",showAllCourses);
-router.get("/getCourseDetails/:courseId",getCourseDetails);
+router.get("/getCourseDetails",getCourseDetails);
 
 
 

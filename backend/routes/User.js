@@ -5,6 +5,7 @@ console.log("user Router initialized");
 const {sendOTP,signUp,Login,changePassword}= require('../controllers/auth');
 const {authenticateUser,isAdmin,isInstructor,isStudent}= require('../middlewares/authMiddleware');
 const {resetPasswordToken,resetPassword}= require('../controllers/resetPassword');
+const {updateDisplayPicture}= require('../controllers/auth');
 
 
 
@@ -26,6 +27,13 @@ router.post("/changePassword",authenticateUser,changePassword);
 // console.log("resetPassword:", resetPassword);
 router.post("/resetPasswordToken",resetPasswordToken);
 router.post("/resetPassword",resetPassword);
+
+//change dp route
+router.put(
+    "/updateDisplayPicture",
+    authenticateUser,
+    updateDisplayPicture
+);
 
 
 module.exports= router;

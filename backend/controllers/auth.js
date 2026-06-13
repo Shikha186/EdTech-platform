@@ -218,3 +218,57 @@ exports.changePassword=async(req,res)=>{
     //send mail of password updated
     //return response
 }
+
+
+const { uploadImageToCloudinary } = require("../utils/imageUploader");
+
+exports.updateDisplayPicture = async (req, res) => {
+    try {
+        console.log("req.files =", req.files);
+
+        if(!req.files){
+            return res.status(400).json({
+                success:false,
+                message:"No files found"
+            });
+        }
+
+        const displayPicture = req.files.displayPicture;
+
+        console.log("displayPicture =", displayPicture);
+
+
+       // const displayPicture = req.files.displayPicture;
+
+        const userId = req.user.id;
+
+        const image = await uploadImageToCloudinary(
+            displayPicture,
+            process.env.VIDEO_FOLDER,
+            1000,
+            1000
+        );
+
+        const updatedProfile = await User.findByIdAndUpdate(
+            userId,
+            {
+                image: image.secure_url,
+            },
+            { new: true }
+        );
+
+        return res.status(200).json({
+            success: true,
+            message: "Profile picture updated successfully",
+            data: updatedProfile,
+        });
+
+    } catch (error) {
+        console.log(error);
+
+        return res.status(500).json({
+            success: false,
+            message: error.message,
+        });
+    }
+};

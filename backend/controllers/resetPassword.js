@@ -2,14 +2,15 @@
 const User=require('../models/user');
 const mailSender=require('../utils/mailSender');
 const bcrypt=require('bcrypt');
+const crypto = require("crypto");
 
 //reset password token
 exports.resetPasswordToken=async(req,res)=>{
     try{
         //get email from req body
-    const {email}= req.body.email;
+    const {email}= req.body;
     //check email exists or not,   email validations 
-    const user= await User.findOne({email: email});
+    const user= await User.findOne({email:email});
     if(!user){
         return res.status(404).json({
             success:false,
@@ -57,7 +58,7 @@ exports.resetPassword=async(req,res)=>{
             })
         }
         //get user details based on token
-        const userDetails=await User.findOne({token:token});
+        const userDetails=await User.findOne({resetPasswordToken:token});
         //if no user found , invalid token
         if(!userDetails){
             return res.status(400).json({
@@ -76,7 +77,7 @@ exports.resetPassword=async(req,res)=>{
         //if not expired, hash new password
         const hashedPassword= await bcrypt.hash(newPassword,10);
         //update user password and reset token fields
-        await User.findOneAndUpdate({token:token},{
+        await User.findOneAndUpdate({resetPasswordToken:token},{
             password:hashedPassword},
             {new:true}
         );
