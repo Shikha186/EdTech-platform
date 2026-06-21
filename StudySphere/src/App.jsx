@@ -1,12 +1,16 @@
 import { useState } from 'react'
+import {Routes, Route } from 'react-router-dom'
 import './App.css'
+import Home from './pages/Home.jsx'
+import ThemeToggle from './components/ThemeToggle.jsx';
 
 function App() {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-blue-100">
-      <h1 className="text-5xl font-bold text-blue-600">
-        Tailwind is Working 🚀
-      </h1>
+    <div className="w-screen min-h-screen bg-background text-foreground flex flex-col items-center  font-Inter">
+      <ThemeToggle />
+      <Routes>
+        <Route path="/" element={<Home/>} />
+      </Routes>
     </div>
   )
 }

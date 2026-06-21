@@ -1,1 +1,63 @@
 @import "tailwindcss";
+
+@theme {
+  /* Mapping Core Semantic Colors to CSS Variables */
+  --color-background: var(--background);
+  --color-card: var(--card);
+  --color-muted: var(--muted);
+  --color-secondary: var(--secondary);
+  --color-foreground: var(--foreground);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-border: var(--border);
+
+  /* Mapping Your studySphere Indigo Theme Layout */
+  --color-brand: #4A6CF7;
+  --color-brand-btn-bg: var(--brand-btn-bg);
+  --color-brand-btn-hover: var(--brand-btn-hover-bg);
+  --color-brand-10: var(--brand-bg-10);
+  --color-brand-20: var(--brand-bg-20);
+  --color-brand-30: var(--brand-bg-30);
+  --color-brand-40: var(--brand-bg-40);
+  --color-brand-70: var(--brand-bg-70);
+  --color-brand-80: var(--brand-bg-80);
+  --color-brand-90: var(--brand-bg-90);
+}
+
+/* Base Variable Layers */
+:root {
+  /* Light Mode Tokens */
+  --background: #f8f9fa;
+  --card: #ffffff;
+  --muted: #f1f5f9;
+  --secondary: #e2e8f0;
+  --foreground: #0f172a;
+  --muted-foreground: #64748b;
+  --border: #e2e8f0;
+
+  /* Brand Opacity Levels */
+  --brand-btn-bg: rgba(74, 108, 247, 0.15);
+  --brand-btn-hover-bg: rgba(74, 108, 247, 0.25);
+  --brand-bg-10: #4a6cf71a;
+  --brand-bg-15: #4a6cf726;
+  --brand-bg-20: #4a6cf733;
+  --brand-bg-30: #4a6cf74d;
+  --brand-bg-40: #4a6cf766;
+  --brand-bg-70: #4a6cf7b3;
+  --brand-bg-80: #4a6cf7cc;
+  --brand-bg-90: #4a6cf7e6;
+}
+
+.dark {
+  /* Dark Mode Overrides */
+  --background: #111111;
+  --card: #1a1a1a;
+  --muted: #222222;
+  --secondary: #2b2b2b;
+  --foreground: #ededed;
+  --muted-foreground: #8a8a8a;
+  --border: #2b2b2b;
+
+  /* Slightly adjusted button opacities for dark surfaces */
+  --brand-btn-bg: rgba(74, 108, 247, 0.18);
+  --brand-btn-hover-bg: rgba(74, 108, 247, 0.25);
+}
