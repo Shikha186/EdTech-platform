@@ -38,6 +38,7 @@ export default function CodeBlocks({position,heading, subheading, ctabtn1, ctabt
                     <p>7</p>
                     <p>8</p>
                     <p>9</p>
+                    <p>10</p>
                 </div>
                 <div className={`relative z-10 w-[90%] flex flex-col gap-2 font-mono font-bold pr-2 ${codeColor} `}>
                     <TypeAnimation

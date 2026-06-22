@@ -5,6 +5,8 @@ import HighlightText from "../components/HomePage/HighlightText.jsx";
 import HomeButton from "../components/HomePage/HomeButton.jsx";
 import V1 from "../assets/ImageandVideo/V1.mp4";
 import CodeBlocks from "../components/HomePage/CodeBlocks.jsx";
+import PhotoExperiences from "../components/HomePage/PhotoExperiences.jsx";
+import TimeLine from "../components/HomePage/TimeLine.jsx";
 
 function Home() {
   return (
@@ -83,6 +85,23 @@ function Home() {
        </div>
       </div>
       {/*Section 2 */}
+      <div className="bg-foreground w-full h-fit  mt-20">
+        <div className="relative flex flex-col items-center mx-auto w-11/12 justify-between">
+            <div className="w-[100%] flex flex-row justify-between items-center py-10 my-5 mx-auto">
+                <div className=" text-left text-2xl text-background font-bold mx-auto w-[50%] ">
+                Get the skills you need for a <HighlightText text={"job that is in demand"} textsize={"text-2xl"} />
+                </div>
+                <div className="flex flex-col gap-5 text-left text-sm text-background mx-auto w-[50%] ">
+                    <div>StudySphere is the perfect place to start your coding journey.It provides a comprehensive learning experience designed to help you succeed in the tech industry.</div>
+                    <div className="w-fit"><HomeButton active={true} link={"/signUp"}>Learn More</HomeButton></div>
+                </div>
+            </div>
+            {/* image section */}
+            <div className="mx-auto my-auto w-full">
+                <TimeLine/>
+            </div>
+        </div>
+      </div>
       {/*Section 3 */}
       {/*Section 4-footer */}
 
