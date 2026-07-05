@@ -1,7 +1,7 @@
-const RatingAndReview = require("../models/ratingsAndReviews");
+const RatingAndReviews = require("../models/ratingsAndReviews");
 const Course = require("../models/course");
-const { $where } = require("../models/user");
-const mongoose = require("mongoose");
+const User = require("../models/user");
+const mongoose=require('mongoose')
 
 
 //create rating and review handler
@@ -18,7 +18,7 @@ exports.createRatingAndReview= async(req,res)=>{
             });
         }
         //check if user is eligible to give rating and review (i.e has the user enrolled in the course)
-        const courseDetails= await Course.findById({_id:courseId, studentsEnrolled: {$elemMatch: {$eq: userId}}},);
+        const courseDetails= await Course.findOne({_id:courseId, studentsEnrolled: {$elemMatch: {$eq: userId}}},);
         if(!courseDetails){
             return res.status(400).json({
                 success:false,
@@ -26,7 +26,7 @@ exports.createRatingAndReview= async(req,res)=>{
             });
         }
         //check if user has already given rating and review for the course
-        const alreadyReviewed= await RatingAndReview.findOne({courseId:courseId, userId:userId});
+        const alreadyReviewed= await RatingAndReviews.findOne({course:courseId, user:userId});
         if(alreadyReviewed){
             return res.status(400).json({
                 success:false,
@@ -34,7 +34,7 @@ exports.createRatingAndReview= async(req,res)=>{
             });
         }
         //create rating and review entry in db
-        const ratingAndReviewDetails= await RatingAndReview.create({
+        const ratingAndReviewDetails= await RatingAndReviews.create({
             rating:rating,
             review:review,
             course:courseId,
@@ -42,7 +42,7 @@ exports.createRatingAndReview= async(req,res)=>{
         });
         //update course with new rating and review object id
         await Course.findByIdAndUpdate(
-            {_id:courseId},
+            courseId,
             {$push:{ratingAndReviews:ratingAndReviewDetails._id}},
             {new:true}
         );
@@ -70,7 +70,7 @@ exports.createRatingAndReview= async(req,res)=>{
 exports.getAverageRatingAndReviews= async(req,res)=>{
     try{
         //fetch courseId from req params
-        const {courseId}=req.body.courseId;
+        const {courseId}=req.body;
         //validation
         if(!courseId){
             return res.status(400).json({
@@ -79,8 +79,8 @@ exports.getAverageRatingAndReviews= async(req,res)=>{
             });
         }
         //calculate average rating and get all reviews for the course
-        const result= await RatingAndReview.aggregate([
-            {$match:{courseId: new mongoose.Types.ObjectId(courseId)}},
+        const result= await RatingAndReviews.aggregate([
+            {$match:{course: new mongoose.Types.ObjectId(courseId)}},
             {$group:{
                 _id:null,
                 averageRating:{$avg:"$rating"},
@@ -126,7 +126,7 @@ exports.getAllRatingsAndReviewsOfSpecificCourse= async(req,res)=>{
             });
         }
         //get all ratings and reviews for the course
-        const ratingsAndReviews= await RatingAndReview.find({courseId:courseId}).populate({path:"userId", select:"firstName lastName email image"}).sort({rating:"desc"}).exec();
+        const ratingsAndReviews= await RatingAndReviews.find({course:courseId}).populate({path:"user", select:"firstname lastname email image"}).sort({rating:"desc"}).exec();
         //return response
         return res.status(200).json({
             success:true,
@@ -149,7 +149,7 @@ exports.getAllRatingsAndReviewsOfSpecificCourse= async(req,res)=>{
 exports.getAllRatingsAndReviews= async(req,res)=>{
     try{
         //get all ratings and reviews for all courses
-        const ratingsAndReviews= await RatingAndReview.find({}).populate({path:"userId", select:"firstName lastName email image"}).populate({path:"courseId", select:"courseName"}).sort({rating:"desc"}).exec();
+        const ratingsAndReviews= await RatingAndReviews.find({}).populate({path:"user", select:"firstname lastname email image"}).populate({path:"course", select:"courseName"}).sort({rating:"desc"}).exec();
         //return response
         return res.status(200).json({
             success:true,
@@ -165,4 +165,7 @@ exports.getAllRatingsAndReviews= async(req,res)=>{
     }
 }
 
+
 //update rating and review handler
+
+

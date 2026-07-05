@@ -1,6 +1,7 @@
 const Course=require('../models/course');
 const Category=require('../models/category');
 const User=require('../models/user');
+const ratingAndReviews=require('../models/ratingsAndReviews')
 const {uploadImageToCloudinary}=require('../utils/imageUploader');
 
 //create course handler
@@ -89,7 +90,7 @@ exports.showAllCourses=async(req,res)=>{
             courseDescription:true,
             price:true,
             thumbnail:true,
-            ratingandReviews:true,
+            ratingAndReviews:true,
             studentsEnrolled:true
         }).populate("instructor").exec();
 
@@ -120,7 +121,7 @@ exports.getCourseDetails=async(req,res)=>{
             }
         })
         .populate("category")
-        //.populate("ratingAndReviews")
+        .populate("ratingAndReviews")
         .populate({
             path: "courseContent",
             populate: {

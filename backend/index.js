@@ -1,3 +1,7 @@
+const dns = require('node:dns');
+dns.setServers(['8.8.8.8', '8.8.4.4']);
+
+
 console.log("Index file started");
 
 //import required modules
@@ -38,17 +42,11 @@ app.use(fileUpload({
 
 const PORT=4000;
 
-// console.log("user routes:", userRoutes);
-// console.log("course routes:", courseRoutes);
-// console.log("payment routes:", paymentRoutes);
-// console.log("profile routes:", profileRoutes);
-// console.log("contact routes:", contactRoutes);
-
-// app.use((req,res,next)=>{
-//     console.log("METHOD:", req.method);
-//     console.log("URL:", JSON.stringify(req.url));
-//     next();
-// });
+app.use((req,res,next)=>{
+    console.log("METHOD:", req.method);
+    console.log("URL:", JSON.stringify(req.url));
+    next();
+});
 //define routes
 app.use('/api/v1/user',userRoutes);
 app.use('/api/v1/profile',profileRoutes);
@@ -63,10 +61,6 @@ app.get('/',(req,res)=>{
         success:true,
         message:"Welcome to StudySphere"
     });
-});
-app.get("/test", (req,res)=>{
-    console.log("TEST ROUTE HIT");
-    res.send("Server working");
 });
 
 app.listen(PORT,()=>{

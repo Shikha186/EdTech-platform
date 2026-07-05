@@ -1,8 +1,8 @@
 //import the required modules
 const express= require('express');
 const router= express.Router();
-console.log("");
-console.log("Payment Router initialized");
+// console.log("");
+// console.log("Payment Router initialized");
 
 
 const {capturePayment,verifySignature}= require('../controllers/payment');

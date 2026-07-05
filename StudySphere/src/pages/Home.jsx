@@ -5,8 +5,11 @@ import HighlightText from "../components/HomePage/HighlightText.jsx";
 import HomeButton from "../components/HomePage/HomeButton.jsx";
 import V1 from "../assets/ImageandVideo/V1.mp4";
 import CodeBlocks from "../components/HomePage/CodeBlocks.jsx";
-import PhotoExperiences from "../components/HomePage/PhotoExperiences.jsx";
 import TimeLine from "../components/HomePage/TimeLine.jsx";
+import FeaturesSection from "../components/HomePage/FeaturesSection.jsx";
+import BecomeInstructor from "../components/HomePage/BecomeInstructor.jsx";
+import Footer from "../components/common/Footer.jsx";
+import CourseSection from "../components/HomePage/courseSection.jsx";
 
 function Home() {
   return (
@@ -99,11 +102,27 @@ function Home() {
             {/* image section */}
             <div className="mx-auto my-auto w-full">
                 <TimeLine/>
-            </div>
+            </div >
         </div>
       </div>
       {/*Section 3 */}
+      <div className="relative flex flex-col items-center mx-auto w-11/12 bg-background justify-between">
+            <div className="mx-auto my-auto w-full ">
+                <FeaturesSection/>
+            </div>
+            <div className="mx-auto my-5 w-full">
+                <BecomeInstructor/>
+            </div>
+            <div>
+                <h2>Reviews from other users</h2>
+            </div>
+            <div>
+                <CourseSection/>
+            </div>
+            
+      </div>
       {/*Section 4-footer */}
+      <Footer/>
 
     </div>
   );

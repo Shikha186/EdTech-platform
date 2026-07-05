@@ -1,8 +1,8 @@
 //import the required modules
 const express= require('express');
 const router= express.Router();
-console.log(" ");
-console.log("Course Router initialized");
+// console.log(" ");
+// console.log("Course Router initialized");
 
 const {createCourse,showAllCourses,getCourseDetails}= require('../controllers/courseController');
 const {authenticateUser,isAdmin,isInstructor,isStudent}= require('../middlewares/authMiddleware');
@@ -14,7 +14,7 @@ const {createRatingAndReview,getAverageRatingAndReviews,getAllRatingsAndReviewsO
 const{createSection,updateSection,deleteSection}=require('../controllers/sectionController');
 const{createSubSection,updateSubSection,deleteSubSection}=require('../controllers/subSectionController');
 
-// console.log("createCourse:", createCourse);
+console.log("createCourse:", createCourse);
 // console.log("showAllCourses:", showAllCourses);
 // console.log("getCourseDetails:", getCourseDetails);
 

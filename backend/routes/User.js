@@ -1,7 +1,7 @@
 //import the required modules
 const express= require('express');
 const router= express.Router();
-console.log("user Router initialized");
+// console.log("user Router initialized");
 const {sendOTP,signUp,Login,changePassword}= require('../controllers/auth');
 const {authenticateUser,isAdmin,isInstructor,isStudent}= require('../middlewares/authMiddleware');
 const {resetPasswordToken,resetPassword}= require('../controllers/resetPassword');

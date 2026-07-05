@@ -1,8 +1,8 @@
 //import required modules
 const express= require('express');
 const router= express.Router();
-console.log(" ");
-console.log("Profile Router initialized");
+// console.log(" ");
+// console.log("Profile Router initialized");
 const {updateProfile,deleteAccount,getAllUserDetails}=require('../controllers/Profile');
 const {authenticateUser,isAdmin,isInstructor,isStudent}= require('../middlewares/authMiddleware');
 
