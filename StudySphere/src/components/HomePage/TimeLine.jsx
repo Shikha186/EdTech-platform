@@ -37,7 +37,7 @@ const timelineData =[
 
 export default function TimeLine() {
     return(
-        <div className="flex flex-row items-center my-10 justify-center w-full gap-5">
+        <div className="flex flex-col-reverse sm:flex-row items-center  my-2 sm:my-10 justify-center w-full gap-5">
             <div className=" flex flex-col w-[50%]">
                 {
                     timelineData.map((item, index) => (
@@ -55,14 +55,14 @@ export default function TimeLine() {
             </div>
             <div className=" relative w-[50%]">
                 <img src={coverPhoto} alt="cover photo" className="shadow-xl shadow-green-500 w-[90%]"/>
-                <div className="absolute -bottom-8 left-7 z-10 flex flex-row items-center gap-8  mx-auto bg-green-900 text-white uppercase py-6 px-8 ">
+                <div className="sm:absolute sm:-bottom-8 sm:left-7 sm:z-10 flex flex-row items-center gap-8  w-fit  mx-auto bg-green-900 text-white uppercase py-6 px-8 ">
                     <div className="flex flex-row items-center gap-1  border-r  border-green-400 mx-auto w-[50%]">
-                        <p className="font-bold text-3xl w-[40%]">10</p>
-                        <p className="tracking-tight text-[12px] text-left text-green-300">Years Experiences</p>
+                        <p className="font-bold text-lg sm:text-3xl w-[40%]">10</p>
+                        <p className="tracking-tight text-[9px] sm:text-[12px] text-left text-green-300">Years Experiences</p>
                     </div>
                     <div className="flex flex-row items-center gap-2 mx-auto w-[50%] ">
-                        <p className="font-bold text-3xl w-[40%]">150</p>
-                        <p className="tracking-tight text-[12px] text-left text-green-300">types of courses</p>
+                        <p className="font-bold text-lg sm:text-3xl w-[40%]">150</p>
+                        <p className="tracking-tight text-[9px] sm:text-[12px] text-left text-green-300">types of courses</p>
                     </div>
                 </div>
             </div>

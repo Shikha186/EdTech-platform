@@ -18,13 +18,13 @@ exports.createRatingAndReview= async(req,res)=>{
             });
         }
         //check if user is eligible to give rating and review (i.e has the user enrolled in the course)
-        const courseDetails= await Course.findOne({_id:courseId, studentsEnrolled: {$elemMatch: {$eq: userId}}},);
-        if(!courseDetails){
-            return res.status(400).json({
-                success:false,
-                message:"User is not enrolled in the course"
-            });
-        }
+        // const courseDetails= await Course.findOne({_id:courseId, studentsEnrolled: {$elemMatch: {$eq: userId}}},);
+        // if(!courseDetails){
+        //     return res.status(400).json({
+        //         success:false,
+        //         message:"User is not enrolled in the course"
+        //     });
+        // }
         //check if user has already given rating and review for the course
         const alreadyReviewed= await RatingAndReviews.findOne({course:courseId, user:userId});
         if(alreadyReviewed){

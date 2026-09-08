@@ -3,6 +3,8 @@ import {Routes, Route } from 'react-router-dom'
 import './App.css'
 import Home from './pages/Home.jsx'
 import ThemeToggle from './components/ThemeToggle.jsx';
+import Login from "./pages/Login.jsx";
+
 
 function App() {
   return (
@@ -10,6 +12,7 @@ function App() {
       <ThemeToggle />
       <Routes>
         <Route path="/" element={<Home/>} />
+        <Route path="/login"element={<Login/>} />
       </Routes>
     </div>
   )

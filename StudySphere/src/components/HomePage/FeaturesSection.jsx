@@ -2,7 +2,7 @@ import React from 'react';
 
 export default function FeaturesSection() {
   return (
-    <div className="relative min-h-screen bg-background py-24 overflow-hidden flex flex-col items-center">
+    <div className="relative h-fit bg-background py-24 overflow-hidden flex flex-col items-center">
       
       {/* 1. Section Header */}
       <div className="text-center max-w-3xl mb-24 relative z-20 px-6 mx-auto flex flex-col items-center">

@@ -7,7 +7,7 @@ import { FaArrowRight } from "react-icons/fa";
 
 export default function BecomeInstructor(){
     return(
-        <div className='w-full h-fit mx-10 my-15 px-7 py-6 gap-1 flex flex-row items-center overflow-hidden'>
+        <div className='w-full h-fit mx-10 my-10 px-6 py-5 gap-1 flex flex-row items-center overflow-hidden'>
                 <div className='w-[50%] flex items-center justify-center my-5'>
                     <img src={teacher} alt="instructor photo" className="w-[60%] h-auto object-cover shadow-[-12px_-12px_0px_#ffffff]"/>
                 </div>

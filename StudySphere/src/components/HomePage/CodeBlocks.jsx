@@ -6,11 +6,11 @@ import {TypeAnimation} from 'react-type-animation'
 
 export default function CodeBlocks({position,heading, subheading, ctabtn1, ctabtn2, codeblock, backgroundGradient, codeColor}) {
     return(
-        <div className={` flex  ${position}  mt-15  mx-10 items-center justify-center gap-15 w-[90%]`}>
+        <div className={` flex  ${position} mt-2 mx-2 md:mt-15  md:mx-10 items-center justify-center gap-15 w-[90%]`}>
             {/* section1 */}
-            <div className="flex flex-col gap-5 mx-5 w-[50%]">
+            <div className="flex flex-col gap-5 mx-1 px-1 md:mx-5 w-[100%] md:w-[50%]">
                 <div className=" tracking-tight">{heading}</div>
-                <div className="text-muted-foreground w-[85%] text-sm">{subheading}</div>
+                <div className="text-muted-foreground w-[85%] text-[12px] md:text-sm">{subheading}</div>
                 <div className="flex flex-row w-[100%] gap-5 mt-5">
                     <HomeButton active={ctabtn1.active} link={ctabtn1.link}>
                         <div className="flex flex-row items-center justify-center">
@@ -25,10 +25,10 @@ export default function CodeBlocks({position,heading, subheading, ctabtn1, ctabt
 
             </div>
             {/* Code Block */}
-            <div className={` relative flex flex-row w-[50%] h-fit text-left overflow-hidden rounded-md p-5 mx-5 border border-muted-foreground `}>
+            <div className={` relative flex flex-row w-[90%] md:w-[50%] h-fit text-left overflow-hidden rounded-md p-5 mx-5 border border-muted-foreground `}>
                 {/* bg-gradient */}
                 <div className={`absolute top-0 left-1/2 -translate-x-1/2 w-[300px] h-[200px] ${backgroundGradient} rounded-full blur-[100px] pointer-events-none`}></div>
-                <div className=" relative z-10 flex flex-col text-center text-muted-foreground w-[10%] text-[12px] font-bold">
+                <div className=" relative z-10 flex flex-col text-center text-muted-foreground w-[10%] text-[12px] md:text-[12px] font-bold">
                     <p>1</p>
                     <p>2</p>
                     <p>3</p>
@@ -40,7 +40,7 @@ export default function CodeBlocks({position,heading, subheading, ctabtn1, ctabt
                     <p>9</p>
                     <p>10</p>
                 </div>
-                <div className={`relative z-10 w-[90%] flex flex-col gap-2 font-mono font-bold pr-2 ${codeColor} `}>
+                <div className={`relative z-10 w-[90%] flex flex-col gap-2 text-[12px] font-mono font-bold pr-2 ${codeColor} `}>
                     <TypeAnimation
                     sequence={[codeblock, 5000, ""]}
                     repeat={Infinity}
