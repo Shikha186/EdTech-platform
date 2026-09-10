@@ -7,6 +7,9 @@ const StoreContextProvider = ({ children }) => {
     const [courses, setCourses] = useState([]);
     const [loading, setLoading] = useState(false);
 
+    const [token, setToken] = useState(localStorage.getItem("token") || null);
+    const [user, setUser] = useState(localStorage.getItem("user") ? JSON.parse(localStorage.getItem("user")) : null);
+
     const fetchCourses = async () => {
 
         try {
@@ -38,6 +41,10 @@ const StoreContextProvider = ({ children }) => {
         courses,
         loading,
         fetchCourses,
+        token,
+        user,
+        setToken,
+        setUser
     };
 
     return (

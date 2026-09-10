@@ -1,14 +1,43 @@
 import React, { useState } from "react";
+import {login} from "../services/operations/authAPI";
+import { useContext } from "react";
+import { StoreContext } from "../StoreContext/StoreContext";
+import { useNavigate } from "react-router-dom";
 
 
 function Login() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const handleSubmit = (e) => {
+    const { setToken, setUser } = useContext(StoreContext);
+    const navigate = useNavigate();
+    const handleSubmit = async(e) => {
         e.preventDefault();
-        console.log(email);
-        console.log(password);
-    }
+        if (!email || !password) {
+            alert("Please fill all fields");
+            return;
+        }
+        try {
+            const response = await login(
+                email.trim(),
+                password.trim()
+            );
+            // Store the token and user information in the context and localStorage
+            setToken(response.token);
+            setUser(response.user);
+            console.log(response);
+
+            // Store the token and user information in localStorage
+            localStorage.setItem("token", response.token);
+            localStorage.setItem("user", JSON.stringify(response.user));
+
+            // Navigate to the home page after successful login
+            navigate("/");
+        } catch (error) {
+            console.log("Login Failed:", error.response?.data?.message || error.message);
+            console.log(error);
+        }
+
+    };
     return(
         <div className="flex flex-col items-center justify-center min-h-screen bg-background text-foreground mx-auto">
             <h1 className="text-3xl text-foreground font-bold">Welcome Back</h1>

@@ -4,7 +4,8 @@ import './App.css'
 import Home from './pages/Home.jsx'
 import ThemeToggle from './components/ThemeToggle.jsx';
 import Login from "./pages/Login.jsx";
-
+import SignUp from "./pages/SignUp.jsx";
+import VerifyOTP from "./pages/VerifyOTP.jsx";
 
 function App() {
   return (
@@ -13,6 +14,8 @@ function App() {
       <Routes>
         <Route path="/" element={<Home/>} />
         <Route path="/login"element={<Login/>} />
+        <Route path="/signUp"element={<SignUp/>} />
+        <Route path="/sendOTP"element={<VerifyOTP/>} />
       </Routes>
     </div>
   )
