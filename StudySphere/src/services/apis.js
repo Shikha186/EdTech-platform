@@ -11,4 +11,9 @@ export const endpoints = {
     RESET_PASSWORD_API: `${BASE_URL}/user/reset-password`,
 
     FORGOT_PASSWORD_API: `${BASE_URL}/user/forgot-password`,
+
+    //Category APIs
+    SHOW_ALL_CATEGORIES_API: `${BASE_URL}/course/showAllCategories`,
+    CATEGORY_PAGE_DETAILS_API: `${BASE_URL}/course/categoryPageDetails`,
+
 };

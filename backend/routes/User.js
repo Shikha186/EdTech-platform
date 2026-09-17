@@ -19,7 +19,7 @@ router.get("/hello", (req,res)=>{
 //auth routes
 router.post("/sendOTP",sendOTP);
 router.post("/signUp",signUp);
-router.post("/Login",Login);
+router.post("/login",Login);
 router.post("/changePassword",authenticateUser,changePassword);
 
 //reset password routes

@@ -151,6 +151,7 @@ exports.Login=async(req,res)=>{
     try{
         //fetch email and password from request body
         const {email,password}=req.body;
+        
         //validate data
         if(!email || !password){
             return res.status(400).json({

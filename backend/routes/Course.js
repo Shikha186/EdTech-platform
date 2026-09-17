@@ -7,14 +7,14 @@ const router= express.Router();
 const {createCourse,showAllCourses,getCourseDetails}= require('../controllers/courseController');
 const {authenticateUser,isAdmin,isInstructor,isStudent}= require('../middlewares/authMiddleware');
 
-const {createCategory,showALLCategories,categoryPageDetails}=require('../controllers/categoryController');
+const {createCategory,showAllCategories,categoryPageDetails}=require('../controllers/categoryController');
 
 const {createRatingAndReview,getAverageRatingAndReviews,getAllRatingsAndReviewsOfSpecificCourse,getAllRatingsAndReviews}=require('../controllers/ratingAndReview');
 
 const{createSection,updateSection,deleteSection}=require('../controllers/sectionController');
 const{createSubSection,updateSubSection,deleteSubSection}=require('../controllers/subSectionController');
 
-console.log("createCourse:", createCourse);
+//console.log("createCourse:", createCourse);
 // console.log("showAllCourses:", showAllCourses);
 // console.log("getCourseDetails:", getCourseDetails);
 
@@ -26,11 +26,11 @@ router.get("/getCourseDetails",getCourseDetails);
 
 
 // console.log("createCategory:", createCategory);
-// console.log("showALLCategories:", showALLCategories);
+// console.log("showAllCategories:", showAllCategories);
 // console.log("categoryPageDetails:", categoryPageDetails);
 //CREATE CATEGORY routes 
 router.post("/createCategory",authenticateUser,isAdmin,createCategory);
-router.get("/showALLCategories",showALLCategories);
+router.get("/showAllCategories",showAllCategories);
 router.post("/categoryPageDetails",categoryPageDetails);
 
 

@@ -35,7 +35,7 @@ function SignUp() {
      };
     return(
         <div className="flex flex-col items-center justify-center w-full  max-h-full bg-background text-foreground ">
-          <div className="flex flex-col items-center justify-center w-[40%] min-h-screen bg-background text-foreground  shadow-lg shadow-[#4a6cf7e6]  my-5 mx-auto">
+          <div className="flex flex-col items-center  w-[70%] md:w-[40%] min-h-screen bg-background text-foreground  shadow-lg shadow-[#4a6cf7e6]  my-5 mx-auto px-1">
             <h1 className="text-3xl text-brand font-bold">StudySphere</h1>
             <p className="text-muted-foreground text-lg md:text-2xl">Welcome 👋 Let’s Get started!</p>
             <p className="text-[16px] md:text-xl italic text-[#4a6cf7e6] ">Join StudySphere and start learning today</p>
