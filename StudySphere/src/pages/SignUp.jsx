@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { sendOTP } from "../services/operations/authAPI.js";
+import Spinner from "../components/common/Spinner.jsx";
 
 
 function SignUp() {
@@ -33,6 +34,14 @@ function SignUp() {
             setLoading(false); 
         }
      };
+
+    if (loading) {
+      return (
+        <div className="flex justify-center items-center h-screen">
+          <Spinner />
+        </div>
+      );
+   }
     return(
         <div className="flex flex-col items-center justify-center w-full  max-h-full bg-background text-foreground ">
           <div className="flex flex-col items-center  w-[70%] md:w-[40%] min-h-screen bg-background text-foreground  shadow-lg shadow-[#4a6cf7e6]  my-5 mx-auto px-1">

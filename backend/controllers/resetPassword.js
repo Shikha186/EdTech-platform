@@ -26,7 +26,7 @@ exports.resetPasswordToken=async(req,res)=>{
     },{new:true});
     console.log("updated user details with reset token",updatedDetails);
     //create url
-    const url=`http://localhost:3000/update_password/${token}`;
+    const url=`http://localhost:5173/update_password/${token}`;
     //send mail containing url
     await mailSender(email, "password reset link",`Click <a href=${url}>here</a> to reset your password. This link is valid for 5 minutes.`);
     return res.status(200).json({

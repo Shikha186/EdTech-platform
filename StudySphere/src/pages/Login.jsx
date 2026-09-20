@@ -3,6 +3,7 @@ import {login} from "../services/operations/authAPI";
 import { useContext } from "react";
 import { StoreContext } from "../StoreContext/StoreContext";
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 
 function Login() {
@@ -63,6 +64,11 @@ function Login() {
                         onChange={(e) => setPassword(e.target.value)}
                         className="text-foreground text-[16px] sm:text-lg md:text-xl h-7.5 md:h-[45px] bg-muted shadow-sm shadow-muted-foreground rounded-md px-0.5"
                     />
+                </div>
+                <div className="mt-2 text-right">
+                    <Link to="/forgot-password" className="text-sm text-blue-500 hover:underline">
+                         Forgot Password?
+                    </Link>
                 </div>
                 <div className="flex justify-center items-center w-[180px] md:w-[350px] h-7.5 md:h-[45px] shadow-sm shadow-muted-foreground rounded-md transition-all duration-300 hover:scale-95  ">
                     <button type="submit" className="bg-[#4a6cf7e6] w-full h-full my-4 text-foreground text-xl cursor-pointer rounded-md">Login</button>

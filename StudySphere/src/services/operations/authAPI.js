@@ -49,3 +49,45 @@ export const sendOTP = async (email) => {
 
     return response.data;
 };
+
+// API call to generate reset token and send the email
+export const getPasswordResetToken = async (email) => {
+  try {
+    const response = await apiConnector("POST", FORGOT_PASSWORD_API, {
+      email,
+    });
+    
+    console.log("FORGOT PASSWORD API RESPONSE...", response);
+
+    if (!response.data.success) {
+      throw new Error(response.data.message);
+    }
+    
+    return response.data;
+  } catch (error) {
+    console.log("FORGOT PASSWORD API ERROR...", error);
+    throw error;
+  }
+};
+
+// API call to update the password using the token
+export const resetPassword = async (token, newPassword, confirmPassword) => {
+  try {
+    const response = await apiConnector("POST", RESET_PASSWORD_API, {
+      token,
+      newPassword,
+      confirmPassword,
+    });
+    
+    console.log("RESET PASSWORD API RESPONSE...", response);
+
+    if (!response.data.success) {
+      throw new Error(response.data.message);
+    }
+    
+    return response.data;
+  } catch (error) {
+    console.log("RESET PASSWORD API ERROR...", error);
+    throw error;
+  }
+};

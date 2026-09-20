@@ -9,6 +9,8 @@ import VerifyOTP from "./pages/VerifyOTP.jsx";
 import Navbar from './components/common/Navbar.jsx';
 import Contact from './pages/Contact.jsx';
 import About from './pages/About.jsx';
+import ForgotPassword from './pages/ForgotPassword.jsx';
+import UpdatePassword from './pages/UpdatePassword.jsx';
 
 function App() {
   return (
@@ -22,6 +24,8 @@ function App() {
         <Route path="/sendOTP"element={<VerifyOTP/>} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/about" element={<About />} />
+        <Route path="/forgot-password" element={<ForgotPassword />} />
+        <Route path="/update_password/:token" element={<UpdatePassword />} />
       </Routes>
     </div>
   )
