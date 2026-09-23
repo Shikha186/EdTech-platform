@@ -33,9 +33,41 @@ const StoreContextProvider = ({ children }) => {
         }
     };
 
+    // New function to fetch fresh user details from the database
+    const fetchUserDetails = async () => {
+        if (!token) return;
+        
+        try {
+            // Replace this URL with your actual route for getAllUserDetails
+            const response = await axios.get(
+                "http://localhost:4000/api/v1/profile/getUserDetails", 
+                {
+                    headers: {
+                        Authorization: `Bearer ${token}`
+                    }
+                }
+            );
+
+            if (response.data.success) {
+                // Update state with fresh DB data (including the image URL)
+                setUser(response.data.userDetails);
+                // Sync localStorage with the latest DB data
+                localStorage.setItem("user", JSON.stringify(response.data.userDetails));
+            }
+        } catch (error) {
+            console.log("Error fetching user details from DB:", error);
+        }
+    };
+
     useEffect(() => {
         fetchCourses();
     }, []);
+
+    useEffect(() => {
+        if (token) {
+            fetchUserDetails();
+        }
+    }, [token]);
 
     const value = {
         courses,

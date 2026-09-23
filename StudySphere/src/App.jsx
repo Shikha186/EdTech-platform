@@ -11,6 +11,15 @@ import Contact from './pages/Contact.jsx';
 import About from './pages/About.jsx';
 import ForgotPassword from './pages/ForgotPassword.jsx';
 import UpdatePassword from './pages/UpdatePassword.jsx';
+import DashboardLayout from './components/common/Dashboard/DashboardLayout.jsx';
+import MyProfile from './pages/MyProfile.jsx';
+import EnrolledCourses from './pages/EnrolledCourses.jsx';
+import Cart from './pages/Cart.jsx';
+import Settings from './pages/Settings.jsx';
+import DashboardHome from './pages/DashboardHome.jsx';
+
+import Courses from './pages/Courses.jsx';
+
 
 function App() {
   return (
@@ -26,6 +35,16 @@ function App() {
         <Route path="/about" element={<About />} />
         <Route path="/forgot-password" element={<ForgotPassword />} />
         <Route path="/update_password/:token" element={<UpdatePassword />} />
+        <Route path="/courses" element={<Courses/>}/>
+        <Route 
+            path="/dashboard"
+            element={<DashboardLayout />}>
+          {/* <Route index element={<MyProfile />}/> */}
+          <Route index path="my-profile" element={<MyProfile />}/>
+          <Route path="enrolled-courses" element={<EnrolledCourses />}/>
+          <Route path="cart" element={<Cart />}/>
+          <Route path="settings" element={<Settings />}/>
+        </Route>
       </Routes>
     </div>
   )

@@ -112,11 +112,21 @@ exports.verifySignature=async(req,res)=>{
                         message:"Course not found"
                     });
                 }
-                const enrolledUser= await User.findByIdAndUpdate(
-                    {_id:userId},
-                    {$push:{Courses:courseId}},
-                    {new:true}
+                const courseProgress = await CourseProgress.create({
+                    courseId: courseId,
+                    completedvideos: [],
+                });
+                const enrolledUser = await User.findByIdAndUpdate(
+                    { _id: userId },
+                    {
+                        $push: {
+                            courses: courseId, // Fixed the lowercase 'c' bug here too
+                            courseProgress: courseProgress._id, 
+                        }
+                    },
+                    { new: true }
                 );
+               
                 if(!enrolledUser){
                     return res.status(400).json({
                         success:false,
@@ -125,7 +135,7 @@ exports.verifySignature=async(req,res)=>{
                 }
                 console.log("enrollment successful");
                 //send enrollment email to user
-                const emailResponse= await mailSender(enrolledUser.email, "congratulations on enrolling the course", courseEnrollmentEmail(enrolledUser.firstName, enrolledCourse.courseName));//make courseEnrollmentEmail template that takes user's first name and course name as parameters and returns the email template
+                const emailResponse= await mailSender(enrolledUser.email, "congratulations on enrolling the course", courseEnrollmentEmail(enrolledUser.firstname, enrolledCourse.courseName));//make courseEnrollmentEmail template that takes user's first name and course name as parameters and returns the email template
                 console.log("enrollment email sent successfully",emailResponse);
                 return res.status(200).json({
                     success:true,

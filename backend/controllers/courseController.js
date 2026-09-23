@@ -8,12 +8,12 @@ const {uploadImageToCloudinary}=require('../utils/imageUploader');
 exports.createCourse=async(req,res)=>{
     try{
         //fetch data from req body
-        const {courseName, courseDescription, whatYouWillLearn, price, category}=req.body;
+        const {courseName, courseDescription, whatYouWillLearn, price, category, tags}=req.body;
 
         //fetch thumbnail from req file
         const thumbnail=req.files.thumbnail;
         //validation
-        if(!courseName || !courseDescription || !whatYouWillLearn || !price || !category || !thumbnail){
+        if(!courseName || !courseDescription || !whatYouWillLearn || !price || !category || !thumbnail || !tags){
             return res.status(400).json({
                 success:false,
                 message:"please provide all the fields"
@@ -51,6 +51,7 @@ exports.createCourse=async(req,res)=>{
             price:price,
             category:categoryDetails._id,
             thumbnail:thumbnailImage.secure_url,
+            tags:tags
         })
         //add the new course to instructor's course list
         await User.findByIdAndUpdate(
@@ -91,8 +92,9 @@ exports.showAllCourses=async(req,res)=>{
             price:true,
             thumbnail:true,
             ratingAndReviews:true,
-            studentsEnrolled:true
-        }).populate("instructor").exec();
+            studentsEnrolled:true,
+            category:true,
+        }).populate("instructor").populate("category").exec();
 
         return res.status(200).json({
             success:true,

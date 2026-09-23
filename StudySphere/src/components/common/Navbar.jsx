@@ -100,7 +100,7 @@ function Navbar(){
                         <Link to="/contact" className={getLinkClass("/contact")}>Contact</Link>
                     </div>
                 </div>
-                <div className="flex items-center justify-between md:gap-2 md:px-3">
+                <div className="flex items-center justify-between md:gap-5 md:px-3">
                     {!token && (
                         <div className="flex items-center gap-4">
                             <div>
@@ -123,19 +123,26 @@ function Navbar(){
                                 </Link> )}
                             </div>
                             <div>
-                                <Link to="/profile" className={getLinkClass("/profile")}>
-                                    {user?.name || "Profile"}
-                                </Link>
-                            </div>
-                            <div>
                                 <button onClick={handleLogout} className={getLinkClass("/logout")}>
                                     Logout
                                 </button>
                             </div>
+                            <div className="flex items-center justify-center">
+                                <Link to="/dashboard" className="flex items-center">
+                                    <img 
+                                    // Matches the 'image' field from your database user model.
+                                    // If no image exists yet, it generates a default avatar using their name.
+                                    src={user?.image || `https://api.dicebear.com/7.x/initials/svg?seed=${user?.firstName || 'User'}`}
+                                    alt="Profile" 
+                                    className="w-8 h-8 md:w-10 md:h-10 rounded-full object-cover border-[1px] border-muted-foreground hover:border-brand shadow-sm hover:shadow-brand/20 transition-all duration-300"
+                                    />
+                                </Link>
+                            </div>
                         </div>
                     )}
+                    <div><ThemeToggle /></div>
                 </div>
-                <div><ThemeToggle /></div>
+                
             
             </div>
 
