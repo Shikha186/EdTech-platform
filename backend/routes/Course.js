@@ -4,8 +4,13 @@ const router= express.Router();
 // console.log(" ");
 // console.log("Course Router initialized");
 
-const {createCourse,showAllCourses,getCourseDetails}= require('../controllers/courseController');
+const {createCourse,showAllCourses,getCourseDetails, editCourse, deleteCourse}= require('../controllers/courseController');
 const {authenticateUser,isAdmin,isInstructor,isStudent}= require('../middlewares/authMiddleware');
+
+
+const { getInstructorCourses } = require("../controllers/courseController");
+
+
 
 const {createCategory,showAllCategories,categoryPageDetails}=require('../controllers/categoryController');
 
@@ -21,8 +26,11 @@ const{createSubSection,updateSubSection,deleteSubSection}=require('../controller
 
 router.post("/createCourse",authenticateUser,isInstructor,createCourse);
 router.get("/showAllCourses",showAllCourses);
-router.get("/getCourseDetails",getCourseDetails);
+router.post("/getCourseDetails",getCourseDetails);
+router.post("/editCourse",authenticateUser,isInstructor,editCourse);
+router.post("/deleteCourse",authenticateUser,isInstructor,deleteCourse);
 
+router.get("/getInstructorCourses", authenticateUser, isInstructor, getInstructorCourses);
 
 
 // console.log("createCategory:", createCategory);

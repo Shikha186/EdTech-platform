@@ -99,6 +99,9 @@ function Navbar(){
                     <div className="ml-4">
                         <Link to="/contact" className={getLinkClass("/contact")}>Contact</Link>
                     </div>
+                    <div className="ml-4">
+                        <Link to="/courses" className={getLinkClass("/courses")}>Courses</Link>
+                    </div>
                 </div>
                 <div className="flex items-center justify-between md:gap-5 md:px-3">
                     {!token && (

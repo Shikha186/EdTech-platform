@@ -56,47 +56,48 @@ exports.createSubSection=async(req,res)=>{
 }
 
 //update subsection handler
-exports.updateSubSection=async(req,res)=>{
-    try{
-        //fetch data from req body
-        const {subSectionId, title, timeDuration, description}=req.body;
-        //extract video file from req file
-        const video=req.files.videoFile;
-        //data validation
-        if(!subSectionId || !title || !timeDuration || !description || !video){
-            return res.status(400).json({
-                success:false,
-                message:"please provide all the fields"
-             })
-         }
-        //upload video to cloudinary
-        const uploadDetails=await uploadImageToCloudinary(video,process.env.VIDEO_FOLDER);
-        //update subsection details in db   
-        await SubSection.findByIdAndUpdate(
-            {_id:subSectionId},
-            {   title:title,
-                timeDuration:timeDuration,
-                description:description,
-                videoUrl:uploadDetails.secure_url,
-                //videoPublicId:uploadDetails.public_id
-            },
-            {new:true}
-        );
-        //return response with success message
-        return res.status(200).json({
-            success:true,
-            message:"subsection updated successfully"
-        });    
+exports.updateSubSection = async (req, res) => {
+    try {
+        const { subSectionId, title, timeDuration, description } = req.body;
         
+        // 1. Find the existing subsection first
+        const subSection = await SubSection.findById(subSectionId);
+        
+        if (!subSection) {
+            return res.status(404).json({
+                success: false,
+                message: "Subsection not found",
+            });
+        }
 
-    }
-    catch(error){
-        console.log("error in updating subsection",error);
+        // 2. Only update the fields that were actually provided in the request
+        if (title !== undefined) subSection.title = title;
+        if (timeDuration !== undefined) subSection.timeDuration = timeDuration;
+        if (description !== undefined) subSection.description = description;
+
+        // 3. Only upload to Cloudinary if a NEW video was attached
+        if (req.files && req.files.videoFile) {
+            const video = req.files.videoFile;
+            const uploadDetails = await uploadImageToCloudinary(video, process.env.VIDEO_FOLDER);
+            subSection.videoUrl = uploadDetails.secure_url;
+        }
+
+        // 4. Save the updated document
+        await subSection.save();
+
+        // 5. Send back the updated document so the frontend can refresh instantly
+        return res.status(200).json({
+            success: true,
+            message: "Subsection updated successfully",
+            data: subSection, // <-- Good practice to return the updated data
+        });
+
+    } catch (error) {
+        console.log("error in updating subsection", error);
         return res.status(500).json({
-            success:false,
-            message:error.message
-         });
-     
+            success: false,
+            message: error.message
+        });
     }
 }
 //check once if update is correct or not

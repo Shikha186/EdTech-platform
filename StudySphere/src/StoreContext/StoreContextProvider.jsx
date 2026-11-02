@@ -10,6 +10,27 @@ const StoreContextProvider = ({ children }) => {
     const [token, setToken] = useState(localStorage.getItem("token") || null);
     const [user, setUser] = useState(localStorage.getItem("user") ? JSON.parse(localStorage.getItem("user")) : null);
 
+    // It must be initialized to 1, not 0
+    const [step, setStep] = useState(1);
+
+    // 2. Holds the course data returned from the backend after Step 1
+    const [course, setCourse] = useState(null);
+  
+     // 3. Flag to determine if we are creating a new course or editing an existing one
+    const [editCourse, setEditCourse] = useState(false);
+
+    // Inside StoreContext.jsx
+    const [cart, setCart] = useState(() => {
+    // Load cart from local storage on initial load
+    const savedCart = localStorage.getItem("cart");
+    return savedCart ? JSON.parse(savedCart) : [];
+    });
+
+    useEffect(() => {
+        localStorage.setItem("cart", JSON.stringify(cart));
+    }, [cart]);
+
+
     const fetchCourses = async () => {
 
         try {
@@ -76,7 +97,17 @@ const StoreContextProvider = ({ children }) => {
         token,
         user,
         setToken,
-        setUser
+        setUser,
+        user, 
+        setUser,
+        cart, 
+        setCart,
+        step,
+        setStep,
+        course,
+        setCourse,
+        editCourse,
+        setEditCourse,
     };
 
     return (

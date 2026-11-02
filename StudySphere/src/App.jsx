@@ -19,6 +19,9 @@ import Settings from './pages/Settings.jsx';
 import DashboardHome from './pages/DashboardHome.jsx';
 
 import Courses from './pages/Courses.jsx';
+import CourseDetails from './pages/CourseDetails.jsx';
+import MyCourses from './components/common/Dashboard/MyCourses/MyCourse.jsx';
+import AddCourse from './components/common/Dashboard/AddCourse/AddCourse.jsx';
 
 
 function App() {
@@ -36,13 +39,17 @@ function App() {
         <Route path="/forgot-password" element={<ForgotPassword />} />
         <Route path="/update_password/:token" element={<UpdatePassword />} />
         <Route path="/courses" element={<Courses/>}/>
+        <Route path="/cart" element={<Cart/>}/>
+        <Route path="/courses/:courseId" element={<CourseDetails />} />
         <Route 
             path="/dashboard"
             element={<DashboardLayout />}>
-          {/* <Route index element={<MyProfile />}/> */}
-          <Route index path="my-profile" element={<MyProfile />}/>
+          <Route index element={<DashboardHome />}/>
+          <Route path="my-profile" element={<MyProfile />}/>
           <Route path="enrolled-courses" element={<EnrolledCourses />}/>
           <Route path="cart" element={<Cart />}/>
+          <Route path="my-courses" element={<MyCourses />}/>
+          <Route path="add-course" element={<AddCourse />}/>
           <Route path="settings" element={<Settings />}/>
         </Route>
       </Routes>

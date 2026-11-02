@@ -1,5 +1,6 @@
 const Section=require('../models/section');
 const Course=require('../models/course');
+const SubSection=require('../models/subSection');
 
 //create section handler
 exports.createSection=async(req,res)=>{
@@ -99,6 +100,12 @@ exports.deleteSection=async(req,res)=>{
             {$pull:{courseContent:sectionId}},
             {new:true}
         );
+
+        const section = await Section.findById(sectionId);
+        if (section && section.subSection.length > 0) {
+        // Delete all subsections associated with this section
+        await SubSection.deleteMany({ _id: { $in: section.subSection } });
+}
         //delete section from db
         await Section.findByIdAndDelete({_id:sectionId});
         
